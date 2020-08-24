@@ -1,0 +1,49 @@
+.header {
+  margin: 15px 0;
+}
+
+.header__inner {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 20px;
+  @include media-mobile {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+}
+.heading, .score, .category {
+  color: #ffffff;
+}
+
+.heading {
+  font-size: 5rem;
+  @extend %logo-font;
+  @include media-mobile {
+    margin: 0 auto;
+  }
+}
+
+.score {
+  font-size: 3rem;
+  @include media-mobile {
+    margin: 0 auto;
+  }
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  justify-content: space-around;
+  @include media-mobile {
+    flex-wrap: wrap;
+  }
+}
+
+.category {
+  font-size: 2rem;
+}
+
+.underline {
+  border-bottom: 2px solid #23c8c8;
+}
