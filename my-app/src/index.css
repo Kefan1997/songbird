@@ -46,9 +46,11 @@ body {
     flex-direction: column;
   }
 }
+.column-2_disable {
+  display: none;
+}
 
 .next-level-button {
-  /* background-color: teal; */
   background-color: rgba(255, 255, 255, 0.356);
   cursor: pointer;
   max-width: 1100px;
@@ -60,10 +62,29 @@ body {
   border-radius: 30px;
   margin-bottom: 15px;
 }
+.next-level-button_active {
+  background-color: white;
+}
 
 .description__info {
   color: #ffffff;
   font-size: 1.5rem;
+}
+
+.instruction {
+  display: block;
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 20px;
+}
+.instruction_disable {
+  display: none;
+}
+
+span {
+  display: block;
 }
 
 .description__name {
@@ -77,6 +98,16 @@ body {
 }
 @media (max-width: 414px) {
   .description__bird-name {
+    text-align: center;
+  }
+}
+
+.description__bird-species {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+@media (max-width: 414px) {
+  .description__bird-species {
     text-align: center;
   }
 }
@@ -263,6 +294,9 @@ body {
 
 .category {
   font-size: 2rem;
+}
+.category_active {
+  color: red;
 }
 
 .underline {

@@ -1,18 +1,21 @@
-import React from 'react';
+import React from "react";
 
 class Audio extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      player: false
-    }
+      player: false,
+    };
   }
 
   render() {
     return (
-    <audio controls className="player" preload="false">
-      <source src={this.props.source} />
-    </audio>
+      <audio
+        src={this.props.source}
+        controls
+        className="player"
+        preload="false"
+      ></audio>
     );
   }
 }

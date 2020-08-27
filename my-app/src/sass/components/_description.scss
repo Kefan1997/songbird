@@ -3,6 +3,21 @@
   font-size: 1.5rem;
 }
 
+.instruction {
+  display: block;
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 10px 0;
+  padding: 5px;
+  border-radius: 20px;
+  &_disable {
+    display: none;
+  }
+}
+span {
+  display: block;
+}
+
 .description__name {
   flex-grow: 2;
   padding: 5px;
@@ -10,6 +25,14 @@
 
 .description__bird-name {
   font-size:2rem;
+  color: #ffffff;
+  @include media-mobile {
+    text-align: center;
+  }
+}
+
+.description__bird-species {
+  font-size:1.5rem;
   color: #ffffff;
   @include media-mobile {
     text-align: center;
@@ -29,3 +52,4 @@
 .description__info, .description__audio-player {
   margin: 15px 0 0 0;
 }
+

@@ -42,6 +42,9 @@
 
 .category {
   font-size: 2rem;
+  &_active {
+    color: red;
+  }
 }
 
 .underline {

@@ -1,25 +1,32 @@
-import React from 'react';
-import defaultImg from './img/bird1.png';
-import Audio from './Audio';
+import React from "react";
+import defaultImg from "./img/bird1.png";
+import Audio from "./Audio";
+import dataBirds from "./birds";
 
-function Question() {
-  return (
-    <div className="current-question">
+class Question extends React.Component {
+  render() {
+    const currentBird = this.props.currentBird;
+    const currentCategory = this.props.level;
+    const isCorrect = this.props.isCorrect;
+    const currentDataBird = dataBirds[currentCategory][currentBird];
+    return (
+      <div className="current-question">
         <div className="wrapper">
           <div className="current-question__column">
             <div className="current-bird__image">
-              <img src={defaultImg} alt="bird"/>
+              <img src={isCorrect ? currentDataBird.image : defaultImg} alt="bird" />
             </div>
             <div className="current-bird__info">
-              <h3 className="bird-name">Журавль</h3>
+              <h3 className="bird-name">{isCorrect ? currentDataBird.name : "*****"}</h3>
               <div className="audio-player">
-                <Audio source="\/\/www.xeno-canto.org\/571141\/download"/>
+                <Audio source={currentDataBird.audio} />
               </div>
             </div>
-          </div> 
+          </div>
         </div>
-    </div>
-  )
+      </div>
+    );
+  }
 }
 
 export default Question;
