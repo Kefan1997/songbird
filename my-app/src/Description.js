@@ -12,9 +12,6 @@ class Description extends React.Component {
     const currentCategory = this.props.level;
     const currentBird = this.props.guessBird;
     const currentDataBird = dataBirds[currentCategory][currentBird];
-    if(currentBird){
-      console.log(currentDataBird.audio);
-    }
     return (
       <div className="description">
         <div className="wrapper">

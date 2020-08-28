@@ -4,17 +4,23 @@ import Question from "./Question";
 import Options from "./Options";
 import Description from "./Description";
 import dataBirds from "./birds";
+import Modal from "./Modal";
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentLevel: 1,
+      Score: 0,
+      currentLevel: 0,
       nextLevel: false,
       isCorrect: false,
+      endOfTheGame: false,
       guessBird: undefined,
       currentBird: this.randomInteger(),
+      checkboxs: new Array(6).fill(false),
     };
+    this.openModal = this.openModal.bind(this);
+    this.startNewGame = this.startNewGame.bind(this);
   }
 
   randomInteger() {
@@ -23,19 +29,50 @@ class Game extends React.Component {
     return Math.floor(rand);
   }
 
-  // isCorrectAnswer(guessBird, currentBird) {
-  //   if(guessBird === currentBird) {
-  //     this.setState({isCorrect: true});
-  //   }
-  // }
-
   updateActiveBird = (index) => {
-    this.setState({ guessBird: index });
+    const { checkboxs } = this.state;
+    if (!this.state.nextLevel) {
+      checkboxs[index] = true;
+    }
+    this.setState({ guessBird: index, checkboxs: checkboxs });
+  };
+
+  updateScore = (mark) => {
+    this.setState({ Score: mark });
   };
 
   updateStatusAnswer = () => {
     this.setState({ isCorrect: true, nextLevel: true });
   };
+
+  changeLevel = () => {
+    this.setState({
+      checkboxs: new Array(6).fill(false),
+      currentLevel: this.state.currentLevel + 1,
+      nextLevel: false,
+      isCorrect: false,
+      guessBird: undefined,
+      currentBird: this.randomInteger(),
+    });
+  };
+
+  openModal() {
+    this.setState({
+      endOfTheGame: true,
+      currentLevel: 0,
+      currentBird: this.randomInteger(),
+      activeBird: undefined,
+      nextLevel: false,
+    });
+  }
+
+  startNewGame() {
+    this.setState({ 
+      endOfTheGame: false,
+      Score: 0, 
+      checkboxs: new Array(6).fill(false),
+    });
+  }
 
   render() {
     const level = this.state.currentLevel;
@@ -49,40 +86,59 @@ class Game extends React.Component {
           <div className="wrapper">
             <div className="header__inner">
               <h1 className="heading">Songbird</h1>
-              <div className="score">Score:</div>
+              <div className="score">Score:{this.state.Score}</div>
             </div>
             <Categories level={level} />
           </div>
         </div>
 
-        <Question
-          level={level}
-          isCorrect={isCorrect}
-          currentBird={currentBird}
-        />
-
-        <div className="control-block">
-          <div className="column-2">
-            <Options
-              answers={dataBirds[level]}
-              updateActiveBird={this.updateActiveBird}
-              currentBird={currentBird}
-              updateStatusAnswer={this.updateStatusAnswer}
-              nextLevel={this.state.nextLevel}
-            />
-            <Description level={level} guessBird={this.state.guessBird} />
-          </div>
-        </div>
-
         <div
           className={
-            this.state.nextLevel
-              ? " button next-level-button next-level-button_active"
-              : "button next-level-button"
+            this.state.endOfTheGame ? "game-controls none" : "game-controls"
           }
         >
-          Next Level
+          <Question
+            level={level}
+            isCorrect={isCorrect}
+            currentBird={currentBird}
+          />
+
+          <div className="control-block">
+            <div className="column-2">
+              <Options
+                answers={dataBirds[level]}
+                updateActiveBird={this.updateActiveBird}
+                currentBird={currentBird}
+                updateStatusAnswer={this.updateStatusAnswer}
+                nextLevel={this.state.nextLevel}
+                guessBird={guessBird}
+                resetCheckBox={this.state.resetCheckBox}
+                checkboxs={this.state.checkboxs}
+                updateScore={this.updateScore}
+                Score={this.state.Score}
+              />
+              <Description level={level} guessBird={guessBird} />
+            </div>
+          </div>
+
+          <div
+            className={
+              this.state.nextLevel
+                ? " button next-level-button next-level-button_active"
+                : "button next-level-button"
+            }
+            onClick={
+              this.state.currentLevel === 5 ? this.openModal : this.changeLevel
+            }
+          >
+            Next Level
+          </div>
         </div>
+        <Modal
+          startNewGame={this.startNewGame}
+          endOfTheGame={this.state.endOfTheGame}
+          score={this.state.Score}
+        />
       </div>
     );
   }

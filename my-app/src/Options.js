@@ -1,20 +1,17 @@
 import React from "react";
-
+import classNames from "classnames";
 class Options extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  handleClick = (index, elem) => {
+  handleClick = (index) => {
     this.props.updateActiveBird(index);
     if (this.props.currentBird === index) {
+      const arr = this.props.checkboxs.filter((item) => item === false);
+      const mark = this.props.Score + arr.length;
       this.props.updateStatusAnswer();
-      elem.currentTarget.firstChild.classList.add("correctly");
-      
-    } else if(this.props.nextLevel) {
-      return;
-    } else if(this.props.currentBird !== index) {
-      elem.currentTarget.firstChild.classList.add("incorrectly");
+      this.props.updateScore(mark);
     }
   };
 
@@ -23,11 +20,23 @@ class Options extends React.Component {
     const listAnswers = answers.map((answer, index) => (
       <li
         className="possible-answer"
-        onClick={(elem) => this.handleClick(index, elem)}
+        onClick={() => this.handleClick(index)}
         id={index}
         key={index}
       >
-        <span className="checkbox"></span>
+        <span
+          className={classNames(
+            "checkbox",
+            {
+              correct:
+                index === this.props.currentBird && this.props.checkboxs[index]
+            },
+            {
+              incorrect:
+                index !== this.props.currentBird && this.props.checkboxs[index]
+            }
+          )}
+        ></span>
         {answer}
       </li>
     ));

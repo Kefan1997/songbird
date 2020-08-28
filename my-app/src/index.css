@@ -50,6 +50,10 @@ body {
   display: none;
 }
 
+.none {
+  display: none;
+}
+
 .next-level-button {
   background-color: rgba(255, 255, 255, 0.356);
   cursor: pointer;
@@ -163,11 +167,11 @@ span {
   border-radius: 50%;
 }
 
-.correctly {
+.correct {
   background-color: rgba(0, 255, 21, 0.671);
 }
 
-.incorrectly {
+.incorrect {
   background-color: rgba(255, 0, 0, 0.767);
 }
 
@@ -240,6 +244,34 @@ span {
 
 .player {
   width: 95%;
+}
+
+.modal {
+  margin: 0 0 40px 0;
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  text-align: center;
+  align-items: center;
+}
+.modal > .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__title {
+  color: teal;
+  font-size: 5rem;
+  text-decoration: underline;
+  text-shadow: 0 0px 2px black;
+}
+
+.modal__text {
+  color: white;
+  margin: 40px 0;
+  font-size: 3rem;
 }
 
 .header {

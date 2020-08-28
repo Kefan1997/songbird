@@ -14,7 +14,9 @@ class Categories extends React.Component {
     const listCategory = categories.map((category, index) => (
       <li
         key={index}
-        className={index === currentCategory ? "category category_active" : "category"}
+        className={
+          index === currentCategory ? "category category_active" : "category"
+        }
       >
         {category}
       </li>
