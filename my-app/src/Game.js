@@ -19,12 +19,9 @@ class Game extends React.Component {
       currentBird: this.randomInteger(),
       checkboxs: new Array(6).fill(false),
     };
-    this.openModal = this.openModal.bind(this);
-    this.startNewGame = this.startNewGame.bind(this);
   }
 
   randomInteger() {
-    // случайное число от min до (max+1)
     let rand = 0 + Math.random() * (5 + 1 - 0);
     return Math.floor(rand);
   }
@@ -46,42 +43,56 @@ class Game extends React.Component {
   };
 
   changeLevel = () => {
+    if (this.state.nextLevel) {
+      this.setState({
+        checkboxs: new Array(6).fill(false),
+        currentLevel: this.state.currentLevel + 1,
+        nextLevel: false,
+        isCorrect: false,
+        guessBird: undefined,
+        currentBird: this.randomInteger(),
+      });
+    }
+  };
+
+  openModal = () => {
+    if (this.state.nextLevel) {
+      this.setState({
+        endOfTheGame: true,
+        currentLevel: 0,
+        currentBird: this.randomInteger(),
+        activeBird: undefined,
+        nextLevel: false,
+      });
+    }
+  };
+
+  startNewGame = () => {
     this.setState({
-      checkboxs: new Array(6).fill(false),
-      currentLevel: this.state.currentLevel + 1,
+      endOfTheGame: false,
+      currentLevel: 0,
       nextLevel: false,
       isCorrect: false,
       guessBird: undefined,
       currentBird: this.randomInteger(),
-    });
-  };
-
-  openModal() {
-    this.setState({
-      endOfTheGame: true,
-      currentLevel: 0,
-      currentBird: this.randomInteger(),
-      activeBird: undefined,
-      nextLevel: false,
-    });
-  }
-
-  startNewGame() {
-    this.setState({ 
-      endOfTheGame: false,
-      Score: 0, 
+      Score: 0,
       checkboxs: new Array(6).fill(false),
     });
-  }
+  };
 
   render() {
     const level = this.state.currentLevel;
     const currentBird = this.state.currentBird;
     const guessBird = this.state.guessBird;
     const isCorrect = this.state.isCorrect;
+    const gameStyle = {
+      backgroundImage: "url(" + dataBirds[level][0].background + ")",
+      backgroundSize: "cover",
+    };
+    console.log(`Right answer: ${dataBirds[level][currentBird].name}`);
 
     return (
-      <div className="game">
+      <div className="game game-small" style={gameStyle}>
         <div className="header">
           <div className="wrapper">
             <div className="header__inner">
@@ -137,7 +148,7 @@ class Game extends React.Component {
         <Modal
           startNewGame={this.startNewGame}
           endOfTheGame={this.state.endOfTheGame}
-          score={this.state.Score}
+          Score={this.state.Score}
         />
       </div>
     );

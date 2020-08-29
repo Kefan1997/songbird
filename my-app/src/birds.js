@@ -1,8 +1,17 @@
 /* eslint-disable no-useless-escape */
+
+import backgroundNight from "./img/backgroundNight.jpg"
+import backgroundForest from "./img/backgroundForest.jpg"
+import backgroundSky from "./img/backgroundSky.jpg"
+import backgroundSea from "./img/backgroundSea.jpg"
+import backgroundSong from "./img/backgroundSong.jpg"
+import backgroundRedBook from "./img/backgroundRedBook.jpg"
+
 const dataBirds = [
   [
     {
       id: 1,
+      background: backgroundNight,
       name: "Зорька",
       species: "Otus scops",
       description:
@@ -64,6 +73,7 @@ const dataBirds = [
   [
     {
       id: 1,
+      background: backgroundSky,
       name: "Стервятник",
       species: "Neophron",
       description:
@@ -126,6 +136,7 @@ const dataBirds = [
   [
     {
       id: 1,
+      background:backgroundForest,
       name: "Глухарь",
       species: "Tetrao urogallus",
       description:
@@ -188,6 +199,7 @@ const dataBirds = [
   [
     {
       id: 1,
+      background: backgroundSea,
       name: "Альбатрос",
       species: "Diomedea",
       description:
@@ -250,6 +262,7 @@ const dataBirds = [
   [
     {
       id: 1,
+      background: backgroundSong,
       name: "Соловей",
       species: "Luscinia",
       description:
@@ -311,6 +324,7 @@ const dataBirds = [
   [
     {
       id: 1,
+      background: backgroundRedBook,
       name: "Сизоворонка",
       species: "Coracias garrulus",
       description:

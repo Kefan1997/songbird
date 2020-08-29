@@ -8,9 +8,11 @@ html {
   font-size: 10px;
 }
 
-body {
-  background-image: url(./img/background1.jpg);
-  background-size: cover;
+.game-small {
+  height: 100vh;
+  @include media-mobile {
+    height: 100%;
+  }
 }
 
 .wrapper {

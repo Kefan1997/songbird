@@ -1,5 +1,5 @@
 import React from "react";
-import defaultImg from "./img/bird1.png";
+import defaultImg from "./img/bird2.jpg";
 import Audio from "./Audio";
 import dataBirds from "./birds";
 
