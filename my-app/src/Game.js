@@ -1,10 +1,10 @@
-import React from "react";
-import Categories from "./Categories";
-import Question from "./Question";
-import Options from "./Options";
-import Description from "./Description";
-import dataBirds from "./birds";
-import Modal from "./Modal";
+import React from 'react';
+import Categories from './Categories';
+import Question from './Question';
+import Options from './Options';
+import Description from './Description';
+import dataBirds from './birds';
+import Modal from './Modal';
 
 class Game extends React.Component {
   constructor(props) {
@@ -86,8 +86,8 @@ class Game extends React.Component {
     const guessBird = this.state.guessBird;
     const isCorrect = this.state.isCorrect;
     const gameStyle = {
-      backgroundImage: "url(" + dataBirds[level][0].background + ")",
-      backgroundSize: "cover",
+      backgroundImage: 'url(' + dataBirds[level][0].background + ')',
+      backgroundSize: 'cover',
     };
     console.log(`Right answer: ${dataBirds[level][currentBird].name}`);
 
@@ -103,16 +103,8 @@ class Game extends React.Component {
           </div>
         </div>
 
-        <div
-          className={
-            this.state.endOfTheGame ? "game-controls none" : "game-controls"
-          }
-        >
-          <Question
-            level={level}
-            isCorrect={isCorrect}
-            currentBird={currentBird}
-          />
+        <div className={this.state.endOfTheGame ? 'game-controls none' : 'game-controls'}>
+          <Question level={level} isCorrect={isCorrect} currentBird={currentBird} />
 
           <div className="control-block">
             <div className="column-2">
@@ -135,12 +127,10 @@ class Game extends React.Component {
           <div
             className={
               this.state.nextLevel
-                ? " button next-level-button next-level-button_active"
-                : "button next-level-button"
+                ? ' button next-level-button next-level-button_active'
+                : 'button next-level-button'
             }
-            onClick={
-              this.state.currentLevel === 5 ? this.openModal : this.changeLevel
-            }
+            onClick={this.state.currentLevel === 5 ? this.openModal : this.changeLevel}
           >
             Next Level
           </div>
